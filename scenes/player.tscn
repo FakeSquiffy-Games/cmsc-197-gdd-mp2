@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://ce88ibgffav0s"]
+
+[ext_resource type="Script" uid="uid://liwdq3vxu8g1" path="res://scripts/player.gd" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://b3m0ednm5lp5x" path="res://assets/players/0/0.png" id="2_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://dvl0el0qr164c" path="res://assets/players/0/1.png" id="3_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://uu3idk5y0qop" path="res://assets/players/1/0.png" id="4_fjrip"]
+[ext_resource type="Texture2D" uid="uid://byh00djk8lg4a" path="res://assets/players/1/1.png" id="5_smehm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ur7pv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qlg0r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tuyoq")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fjrip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_smehm")
+}],
+"loop": true,
+"name": &"orange",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
+size = Vector2(78, 81.5)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4flbx"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath("AnimatedSprite2D:flip_h")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_4flbx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_ur7pv")
+animation = &"orange"
+frame_progress = 0.37592256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11, 7)
+shape = SubResource("RectangleShape2D_sh265")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -32.0
+offset_top = -60.0
+offset_right = 32.0
+offset_bottom = -32.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_4flbx")
