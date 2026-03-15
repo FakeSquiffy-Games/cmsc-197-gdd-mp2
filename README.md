@@ -1,4 +1,6 @@
-# About `the-midnight-munch`
+# About `the-midnight-munch` <img src="https://github.com/user-attachments/assets/d0932df4-01a6-46f0-938c-3a9c73f2d324" width="4%" align="top">
+
+![Gif of title screen](https://github.com/user-attachments/assets/ab19ee40-1968-431f-89ce-2b896d7a014a)
 
 # Creator
 - Keith Ashly M. Domingo
