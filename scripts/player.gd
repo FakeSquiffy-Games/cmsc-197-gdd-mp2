@@ -10,9 +10,18 @@ extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera: Camera2D = $Camera2D
 @onready var name_label: Label = $NameLabel
+@onready var bio_light = $Bioluminescence  # whatever you named the node
 
 var peer_id: int = 0
 
+func on_eat_npc(npc_tier: int) -> void:
+	bio_light.increase_radius(npc_tier * 15.0)
+
+# When sizing up
+func on_size_up() -> void:
+	bio_light.reset_radius()
+	bio_light.max_radius += 30.0  # glow grows with size
+	
 func setup(id: int) -> void:
 	peer_id = id
 	set_multiplayer_authority(id)
@@ -24,10 +33,10 @@ func setup(id: int) -> void:
 	if id == my_id:
 		camera.enabled = true
 		camera.make_current()
-		camera.limit_left = -1152
-		camera.limit_top = -648
-		camera.limit_right = 1152
-		camera.limit_bottom = 648
+		camera.limit_left = -1728
+		camera.limit_top = -972
+		camera.limit_right = 1728
+		camera.limit_bottom = 972
 	else:
 		camera.enabled = false
 

@@ -1,7 +1,7 @@
 extends Node
 
 const PORT = 7777
-const MAX_PLAYERS = 2
+const MAX_PLAYERS = 3
 const BROADCAST_PORT = 7778
 const BROADCAST_MSG = "LAN_GAME_HOST"
 
@@ -81,7 +81,7 @@ func stop_listening() -> void:
 
 func _on_peer_connected(peer_id: int) -> void:
 	emit_signal("player_connected", peer_id)
-	if multiplayer.is_server() and multiplayer.get_peers().size() >= 1:
+	if multiplayer.is_server() and multiplayer.get_peers().size() >= 0:
 		stop_broadcasting()
 		emit_signal("game_ready")
 
